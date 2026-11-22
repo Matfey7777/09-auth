@@ -16,31 +16,35 @@ export const getMe = async () => {
 
 export const fetchNotes = async (params: FetchNotesParams) => {
   const cookieStore = await cookies();
+
   const { data } = await api.get("/notes", {
-    params: params,
+    params,
     headers: {
       Cookie: cookieStore.toString(),
     },
   });
+
   return data;
 };
 
 export const fetchNoteById = async (id: string) => {
   const cookieStore = await cookies();
+
   const { data } = await api.get(`/notes/${id}`, {
     headers: {
       Cookie: cookieStore.toString(),
     },
   });
+
   return data;
 };
 
-export const checkSession = async () => {
-  const cookieStore = await cookies();
-  const { data } = await api.get("/auth/session", {
+export const checkSession = async (cookieHeader: string) => {
+  const response = await api.get("/auth/session", {
     headers: {
-      Cookie: cookieStore.toString(),
+      Cookie: cookieHeader,
     },
   });
-  return data;
+
+  return response;
 };
