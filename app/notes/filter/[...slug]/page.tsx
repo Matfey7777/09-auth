@@ -5,8 +5,8 @@ import {
   dehydrate,
 } from "@tanstack/react-query";
 
-import { fetchNotes } from "@/lib/api";
 import NotesClient from "./Notes.client";
+import { fetchNotes } from "@/lib/api/serverApi";
 
 interface PageProps {
   params: Promise<{
